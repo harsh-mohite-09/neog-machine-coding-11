@@ -7,14 +7,14 @@ const theme = extendTheme({
   components: {
     Button: {
       variants: {
-        myRed: {
-          bg: "red.400",
+        myBlack: {
+          bg: "#333",
           color: "white",
           _hover: {
-            bg: "red.400",
+            bg: "#333",
           },
           _active: {
-            bg: "red.400",
+            bg: "#333",
           },
         },
       },
