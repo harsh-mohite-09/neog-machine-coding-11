@@ -2,6 +2,7 @@ import { Flex, Heading, Select } from "@chakra-ui/react";
 import React from "react";
 import { useAppContext } from "../context/AppContextProvider";
 import AddMovie from "./AddMovie";
+import { getAllYearsInRange, getGenresFromList } from "../helper";
 
 const Filters = () => {
   const {
@@ -9,15 +10,13 @@ const Filters = () => {
     dispatch,
   } = useAppContext();
 
-  const genres = [...new Set(movies.flatMap(({ genre }) => genre))];
+  const genres = getGenresFromList(movies);
 
-  const years = [
-    ...new Set(movies.map(({ year }) => year).sort((a, b) => a - b)),
-  ];
+  const years = getAllYearsInRange(1990, 2023);
 
-  const ratings = [
-    ...new Set(movies.map(({ rating }) => rating).sort((a, b) => a - b)),
-  ];
+  const ratings = Array(10)
+    .fill()
+    .map((_, i) => i + 1);
 
   const handleGenre = (e) => {
     dispatch({ type: "FILTER_BY_GENRE", payload: { genre: e.target.value } });

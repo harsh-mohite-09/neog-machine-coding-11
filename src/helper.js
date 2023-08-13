@@ -40,6 +40,16 @@ export const getFilteredMovies = (movies, filters) => {
   ];
 
   // This will make sure that the movies array passes through all the filter functions
-
   return filterFunctions.reduce((acc, func) => func(acc, filters), movies);
+};
+
+export const getGenresFromList = (movies) => {
+  return [...new Set(movies.flatMap(({ genre }) => genre))].sort();
+};
+
+export const getAllYearsInRange = (lower, upper) => {
+  const n = upper - lower + 1;
+  return Array(n)
+    .fill()
+    .map((_, i) => i + lower);
 };
